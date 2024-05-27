@@ -1,5 +1,5 @@
 const express = require('express'); 
-  
+const z = require("zod")
 const app = express(); 
 const PORT = 3000; 
 
@@ -33,7 +33,9 @@ app.get("/heart",userMiddleWare,(req,res)=>{
 });
 
 
-
+app.use((err,req,res,next)=>{
+    res.status(500).send("Internal server error");
+})
 
 
 
