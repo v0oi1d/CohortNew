@@ -1,0 +1,39 @@
+<html>
+    <script>
+        let todoId = 1;
+
+        function Markdone(todoId){
+            const parent = document.getElementById(todoId)
+            parent.children[2].innerHTML = "Done"
+        }
+
+        function crateChild(title,desp,id){
+            const child = document.createElement("div")
+            const grandchild1 = document.createElement("div")
+            grandchild1.innerHTML = title
+            const grandchild2 = document.createElement("div")
+            grandchild2.innerHTML = desp
+            const grandchild3 = document.createElement("button")
+            grandchild3.innerHTML = "Mark as done"
+            grandchild3.setAttribute("onclick",`Markdone(${id})`)
+            child.appendChild(grandchild1)
+            child.appendChild(grandchild2)
+            child.appendChild(grandchild3)
+            child.setAttribute("id",id)
+            return child
+
+        }
+        function addtodo(){
+            const title = document.getElementById("title").value
+            const desp = document.getElementById("desp").value
+            const parent = document.getElementById("todos")
+            parent.appendChild(crateChild(title,desp,todoId++))
+        }
+    </script>
+    <div>
+        <input id = "title" type="text" placeholder = "title"></input><br></br>
+        <input id = "desp" type="text" placeholder = "desc"></input><br></br>
+        <button onclick = "addtodo()">Add todo</button>
+    </div>
+    <div id ="todos"></div>
+</html>
